@@ -59,8 +59,7 @@ const Sidewalks = (props) => {
       <Layer
         id='sidewalk-click'
         type='line'
-        sourceId='pedestrian'
-        sourceLayer='sidewalks'
+        sourceId='sidewalks'
         filter={visible}
         paint={{
           'line-width': {
@@ -73,8 +72,7 @@ const Sidewalks = (props) => {
       <Layer
         id='sidewalk-outline'
         type='line'
-        sourceId='pedestrian'
-        sourceLayer='sidewalks'
+        sourceId='sidewalks'
         layout={{ 'line-cap': 'round' }}
         filter={visible}
         paint={{
@@ -94,8 +92,7 @@ const Sidewalks = (props) => {
       <Layer
         id='sidewalk'
         type='line'
-        sourceId='pedestrian'
-        sourceLayer='sidewalks'
+        sourceId='sidewalks'
         layout={{ 'line-cap': 'round' }}
         filter={visible}
         paint={{

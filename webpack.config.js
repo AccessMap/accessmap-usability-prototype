@@ -149,9 +149,6 @@ module.exports = function (env) {
         'node_modules',
         path.resolve(__dirname, 'node_modules'),
       ],
-      alias: {
-        'rakam-js$': 'rakam-js/rakam.js',
-      },
     },
 
     plugins,
@@ -187,26 +184,6 @@ module.exports = function (env) {
         warnings: true,
         colors: {
           green: '\u001b[32m',
-        },
-      },
-      proxy: {
-        '/api': {
-          target: process.env.API_SERVER,
-          secure: false,
-          changeOrigin: true,
-          pathRewrite: { '^/api': '' },
-        },
-        '/tiles': {
-          target: process.env.TILE_SERVER,
-          secure: false,
-          changeOrigin: true,
-          pathRewrite: { '^/tiles': '' },
-        },
-        '/analytics': {
-          target: process.env.ANALYTICS_SERVER,
-          secure: false,
-          changeOrigin: true,
-          pathRewrite: { '^/analytics': '' },
         },
       },
     },

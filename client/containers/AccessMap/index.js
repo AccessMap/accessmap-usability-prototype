@@ -7,7 +7,7 @@ import ReactMapboxGl from 'react-mapbox-gl';
 
 import * as AppActions from 'actions';
 
-import PedestrianSource from './source-pedestrian';
+import SidewalkSource from './source-sidewalks';
 
 import Sidewalks from './layers-sidewalks';
 import Waypoints from './layers-waypoints';
@@ -135,7 +135,7 @@ class AccessMap extends Component {
         {...props}
       >
 
-        <PedestrianSource />
+        <SidewalkSource />
 
         <Sidewalks />
         <Waypoints />
