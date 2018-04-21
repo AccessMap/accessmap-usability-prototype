@@ -1,0 +1,11 @@
+.map-overlay {
+  position: relative;
+  padding: 8px;
+  padding-bottom: 32px;
+  margin-top: 0;
+  height: 100%;
+
+  > * {
+    z-index: 4;
+  }
+}

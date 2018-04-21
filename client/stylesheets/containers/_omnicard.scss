@@ -1,0 +1,181 @@
+// Overall layout
+.omnicard {
+  position: relative;
+  margin-bottom: 8px;
+  top: 0;
+  left: 0;
+
+  @media #{$md-mobile-landscape-media} {
+    width: 320px;
+  }
+
+  @media #{$md-tablet-media} {
+    width: 384px;
+  }
+
+  // Autocompletes (geocoders)
+  .geocoder-toolbar {
+    .md-toolbar--action-left {
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-left: 8px;
+      text-align: center;
+      width: 24px;
+      @media #{$md-desktop-media} {
+        width: 20px;
+      }
+    }
+
+    .search-icon {
+      @media #{$md-mobile-portrait-media} {
+      }
+      @media #{$md-mobile-landscape-media} {
+      }
+      @media #{$md-tablet-media} {
+        margin-left: 16px;
+      }
+      @media #{$md-desktop-media} {
+        margin-left: 16px;
+      }
+    }
+
+    .md-toolbar--title {
+      margin-left: 8px;
+    }
+
+    .md-autocomplete-container {
+      width: calc(100% - 96px);
+      padding-left: 8px;
+      height: 30px;
+      border-radius: 2px;
+      background-color: #f6f6f6;
+      margin-left: 8px;
+
+      .md-tile-text--primary {
+        font-weight: $md-font-regular;
+      }
+
+      @media #{$md-mobile-portrait-media} {
+        width: calc(100% - 96px);
+        height: 32px;
+        margin: 8px;
+      }
+      @media #{$md-mobile-landscape-media} {
+        width: calc(100% - 96px);
+        height: 32px;
+        margin: 8px;
+      }
+      @media #{$md-tablet-media} {
+        width: calc(100% - 128px);
+        height: 32px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+        margin-left: 8px;
+      }
+      @media #{$md-desktop-media} {
+        width: calc(100% - 112px);
+        height: 32px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+        margin-left: 8px;
+      }
+
+    }
+
+    .md-autocomplete-list {
+      @media #{$md-mobile-media} {
+        width: 256px;
+      }
+      @media #{$md-mobile-landscape-media} {
+        width: 352px;
+      }
+      @media #{$md-tablet-media} {
+        width: auto;
+      }
+      .md-list-item .md-list-tile {
+        padding-left: 16px;
+      }
+    }
+  }
+
+  // Profile options
+  .profiles-toolbar {
+    padding-left: 8px;
+
+    .profiles-container {
+      padding: 0;
+
+      span h6 {
+        margin-bottom: 0;
+        color: $md-primary-color;
+      }
+
+      .md-selection-control-toggle + .md-selection-control-toggle {
+        padding-left: 12px;
+      }
+
+      .profile-selected {
+        border-bottom: 3px solid $md-secondary-color;
+      }
+    }
+  }
+
+  // Profile editing section
+  .md-slider-track-fill,
+  .md-slider-thumb--on {
+    background: $md-secondary-color;
+  }
+
+  .md-slider-thumb--discrete-on::after {
+    border-top-color: $md-secondary-color;
+  }
+
+  // Globalish settings for height between mobile / tablet
+  @media only screen and (max-width: #{$md-tablet-min-width}) {
+    // Mobile portrait mode: screen real estate is at a premium
+
+    // Shrink toolbars
+    @include react-md-toolbars-mobile-landscape;
+    // Move buttons in toolbars to compensate
+    .md-toolbar .md-btn--toolbar {
+      &.md-btn--icon {
+        margin-top: 0;
+      }
+      &.md-btn--flat {
+        margin-top: 8px;
+      }
+    }
+
+    // Shrink padding on CardText elements
+    .timepicker {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    // Shrink icon padding in profile selector, make bottom border on card.
+    .profiles-container {
+      .md-btn--icon {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        height: 40px;
+      }
+
+      .md-selection-control-toggle {
+        padding-right: 4px;
+        padding-left: 0;
+        width: auto;
+      }
+
+      .md-selection-control-container + .md-selection-control-container {
+        margin-left: 4px;
+      }
+    }
+  }
+
+  .timepicker {
+    > * {
+      display: inline-block;
+      width: 50%;
+    }
+  }
+}
