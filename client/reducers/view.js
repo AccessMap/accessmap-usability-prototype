@@ -19,7 +19,7 @@ export default (state = defaults, action) => {
         ...state,
         lng: action.payload.lng,
         lat: action.payload.lat,
-        zoom: 16,
+        zoom: 17,
       };
     }
     case SET_CENTER:

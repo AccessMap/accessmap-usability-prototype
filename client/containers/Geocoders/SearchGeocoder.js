@@ -12,7 +12,6 @@ const SearchGeocoder = (props) => {
   const {
     actions,
     center,
-    poiName,
   } = props;
 
   return (
@@ -28,7 +27,6 @@ const SearchGeocoder = (props) => {
         actions.setPOI(poi.location[0], poi.location[1], poi.name);
       }}
       proximity={center}
-      defaultValue={poiName || ''}
     />
   );
 };
@@ -36,22 +34,18 @@ const SearchGeocoder = (props) => {
 SearchGeocoder.propTypes = {
   actions: PropTypes.objectOf(PropTypes.func).isRequired,
   center: PropTypes.arrayOf(PropTypes.number).isRequired,
-  poiName: PropTypes.string,
 };
 
 SearchGeocoder.defaultProps = {
-  poiName: null,
 };
 
 const mapStateToProps = (state) => {
   const {
     view,
-    waypoint,
   } = state;
 
   return {
     center: [view.lng, view.lat],
-    poiName: waypoint ? waypoint.properties.name : null,
   };
 };
 

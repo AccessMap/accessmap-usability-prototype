@@ -10,7 +10,6 @@ import * as AppActions from 'actions';
 import SidewalkSource from './source-sidewalks';
 
 import Sidewalks from './layers-sidewalks';
-import Waypoints from './layers-waypoints';
 
 
 const CLICKABLE_LAYERS = [
@@ -100,8 +99,6 @@ class AccessMap extends Component {
           if (e.originalEvent) {
             const { lng, lat } = m.getCenter();
             actions.mapMove([lng, lat], m.getZoom(), bbox);
-          } else {
-            actions.logBounds(bbox);
           }
         }}
         onMouseMove={(m, e) => {
@@ -120,25 +117,12 @@ class AccessMap extends Component {
           const point = [e.lngLat.lng, e.lngLat.lat];
           actions.mapClick(features, point);
         }}
-        onStyleLoad={(m) => {
-          // TODO: run this earlier - right after mapbox style load
-          const newBounds = m.getBounds().toArray();
-          const bbox = [
-            newBounds[0][0],
-            newBounds[0][1],
-            newBounds[1][0],
-            newBounds[1][1],
-          ];
-          actions.logBounds(bbox);
-        }}
-
         {...props}
       >
 
         <SidewalkSource />
 
         <Sidewalks />
-        <Waypoints />
       </Map>
     );
   }

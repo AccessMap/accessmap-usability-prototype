@@ -18,7 +18,6 @@ export const RESIZE_MAP = 'RESIZE_MAP';
 export const RESIZE_WINDOW = 'RESIZE_WINDOW';
 
 // Logging - track map view info, but isolated to prevent infinite recursion
-export const LOG_BOUNDS = 'LOG_BOUNDS';
 export const RESIZE_OMNICARD = 'RESIZE_OMNICARD';
 
 export const SET_DOWNHILL_MAX = 'SET_DOWNHILL_MAX';
@@ -71,11 +70,6 @@ export const loadMap = (width, height) => ({
 export const resizeMap = (width, height) => ({
   type: RESIZE_MAP,
   payload: { width, height },
-});
-
-export const logBounds = bounds => ({
-  type: LOG_BOUNDS,
-  payload: bounds,
 });
 
 export const resizeOmniCard = (height, width) => ({

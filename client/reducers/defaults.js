@@ -10,7 +10,6 @@ export const defaultInclineRanges = {
 };
 
 export const defaultLog = {
-  bounds: null,
   omniCardDim: null,
 };
 
@@ -26,5 +25,3 @@ export const defaultView = {
   mapWidth: null,
   mapHeight: null,
 };
-
-export const defaultWaypoint = null;

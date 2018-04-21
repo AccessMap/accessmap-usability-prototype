@@ -5,7 +5,6 @@ import inclineRanges from './incline-ranges';
 import log from './log';
 import map from './map';
 import view from './view';
-import waypoint from './waypoint';
 
 /**
  * Routing to be implemented
@@ -16,5 +15,4 @@ export default combineReducers({
   log,
   map,
   view,
-  waypoint,
 });

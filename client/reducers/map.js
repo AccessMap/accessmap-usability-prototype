@@ -21,22 +21,11 @@ const handleSelectedFeature = (state = defaultMap.selectedFeature, action) => {
   switch (action.type) {
     case MAP_CLICK: {
       const feature = action.payload.features[0];
-      // If there's already a feature selected and the incoming click doesn't
-      // have layer info, treat it as a 'clear' action
-      if (state && !feature) {
-        return null;
-      }
-      // If it's a map click elsewhere, clear everything but location.
-      if (!feature) {
-        return {
-          layer: null,
-          layerName: null,
-          location: action.payload.location,
-          properties: null,
-        };
-      }
+      // If it's a map click elsewhere, clear everything
+      if (!feature) return null;
+
       // If it's a special map feature, add extra info
-      switch (feature.layer['source-layer']) {
+      switch (feature.layer.source) {
         case 'sidewalks':
           return {
             layer: 'sidewalk',
