@@ -76,14 +76,6 @@ export const resizeMap = (width, height) => ({
 export const logBounds = bounds => ({
   type: LOG_BOUNDS,
   payload: bounds,
-  meta: {
-    analytics: {
-      type: 'log-bounds',
-      payload: {
-        bounds,
-      },
-    },
-  },
 });
 
 export const resizeOmniCard = (height, width) => ({
@@ -113,25 +105,10 @@ export const mapMove = (center, zoom, bounds) => ({
     zoom,
     bounds,
   },
-  meta: {
-    analytics: {
-      type: 'map-move',
-      payload: {
-        center,
-        zoom,
-        bounds,
-      },
-    },
-  },
 });
 
 export const resizeWindow = () => ({
   type: RESIZE_WINDOW,
-  meta: {
-    analytics: {
-      type: 'resize-window',
-    },
-  },
 });
 
 
@@ -139,23 +116,9 @@ export const resizeWindow = () => ({
 export const mapClick = (features, location) => ({
   type: MAP_CLICK,
   payload: { features, location },
-  meta: {
-    analytics: {
-      type: 'map-click',
-      payload: {
-        features,
-        location,
-      },
-    },
-  },
 });
 
 
 export const clearSelectedFeatures = () => ({
   type: CLEAR_SELECTED_FEATURES,
-  meta: {
-    analytics: {
-      type: 'clear-selected-features',
-    },
-  },
 });
