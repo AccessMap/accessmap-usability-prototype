@@ -15,7 +15,8 @@
     "prod": "cross-env NODE_ENV=production webpack --env.prod=true",
     "build": "cross-env NODE_ENV=production webpack --env.prod=true",
     "lint": "eslint ./client ./webpack.config.js -f table || true",
-    "linttest": "eslint ./client ./webpack.config.js -f table"
+    "linttest": "eslint ./client ./webpack.config.js -f table",
+    "deploy": "cross-env NODE_ENV=production webpack --env.prod=true && gh-pages -d public"
   },
   "pre-commit": "linttest",
   "license": "MIT",
