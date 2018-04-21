@@ -1,8 +1,6 @@
 // Action types
 import {
-  LOAD_MAP,
   MAP_MOVE,
-  RESIZE_MAP,
   SET_POI,
   SET_CENTER,
   SET_ZOOM,
@@ -39,13 +37,6 @@ export default (state = defaults, action) => {
         lng: action.payload.center[0],
         lat: action.payload.center[1],
         zoom: action.payload.zoom,
-      };
-    case LOAD_MAP:
-    case RESIZE_MAP:
-      return {
-        ...state,
-        mapWidth: action.payload.width,
-        mapHeight: action.payload.height,
       };
     default:
       return state;

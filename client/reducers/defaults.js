@@ -9,9 +9,7 @@ export const defaultInclineRanges = {
   inclineUphillMin: 125,
 };
 
-export const defaultLog = {
-  omniCardDim: null,
-};
+export const defaultLog = [];
 
 export const defaultMap = {
   inclineUphill: true,
@@ -22,6 +20,4 @@ export const defaultView = {
   lng: -122.333592,
   lat: 47.605628,
   zoom: 15,
-  mapWidth: null,
-  mapHeight: null,
 };

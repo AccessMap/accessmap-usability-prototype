@@ -52,7 +52,6 @@ class AccessMap extends Component {
         width,
         height,
       });
-      this.props.actions.resizeMap(width, height);
     }
   }
 

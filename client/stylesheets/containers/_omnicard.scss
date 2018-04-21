@@ -98,28 +98,6 @@
     }
   }
 
-  // Profile options
-  .profiles-toolbar {
-    padding-left: 8px;
-
-    .profiles-container {
-      padding: 0;
-
-      span h6 {
-        margin-bottom: 0;
-        color: $md-primary-color;
-      }
-
-      .md-selection-control-toggle + .md-selection-control-toggle {
-        padding-left: 12px;
-      }
-
-      .profile-selected {
-        border-bottom: 3px solid $md-secondary-color;
-      }
-    }
-  }
-
   // Profile editing section
   .md-slider-track-fill,
   .md-slider-thumb--on {
@@ -130,52 +108,9 @@
     border-top-color: $md-secondary-color;
   }
 
-  // Globalish settings for height between mobile / tablet
-  @media only screen and (max-width: #{$md-tablet-min-width}) {
-    // Mobile portrait mode: screen real estate is at a premium
-
-    // Shrink toolbars
-    @include react-md-toolbars-mobile-landscape;
-    // Move buttons in toolbars to compensate
-    .md-toolbar .md-btn--toolbar {
-      &.md-btn--icon {
-        margin-top: 0;
-      }
-      &.md-btn--flat {
-        margin-top: 8px;
-      }
-    }
-
-    // Shrink padding on CardText elements
-    .timepicker {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-
-    // Shrink icon padding in profile selector, make bottom border on card.
-    .profiles-container {
-      .md-btn--icon {
-        padding-top: 8px;
-        padding-bottom: 8px;
-        height: 40px;
-      }
-
-      .md-selection-control-toggle {
-        padding-right: 4px;
-        padding-left: 0;
-        width: auto;
-      }
-
-      .md-selection-control-container + .md-selection-control-container {
-        margin-left: 4px;
-      }
-    }
-  }
-
-  .timepicker {
+  .md-dialog-footer--card {
     > * {
-      display: inline-block;
-      width: 50%;
+      margin-right: 8px;
     }
   }
 }

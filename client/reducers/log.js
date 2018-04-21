@@ -1,23 +1,25 @@
-import { combineReducers } from 'redux';
-
 // Action types
 import {
-  RESIZE_OMNICARD,
+  RATE_SIDEWALK,
+  UNDO_RATE_SIDEWALK,
 } from 'actions';
 
 // Default actions
 import { defaultLog as defaults } from './defaults';
 
-const handleOmniCardDim = (state = defaults.omniCardDim, action) => {
+const handleLog = (state = defaults, action) => {
+  const log = state.slice();
   switch (action.type) {
-    case RESIZE_OMNICARD:
-      return action.payload;
+    case RATE_SIDEWALK:
+      log.push(action);
+      return log;
+    case UNDO_RATE_SIDEWALK:
+      log.pop();
+      return log;
     default:
       return state;
   }
 };
 
 
-export default combineReducers({
-  omniCardDim: handleOmniCardDim,
-});
+export default handleLog;

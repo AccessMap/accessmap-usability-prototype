@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import AccessMap from 'containers/AccessMap';
-import FeatureCard from 'containers/FeatureCard';
 import FloatingButtons from 'containers/FloatingButtons';
 import MapOverlay from 'containers/MapOverlay';
 import OmniCard from 'containers/OmniCard';
@@ -27,7 +26,6 @@ class App extends PureComponent {
       <MapOverlay>
         <OmniCard />
         <FloatingButtons />
-        <FeatureCard />
       </MapOverlay>
       <AccessMap />
     </React.Fragment>

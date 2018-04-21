@@ -13,18 +13,16 @@ export const MAP_CLICK = 'MAP_CLICK';
 
 // Browser / load events
 export const LOAD_APP = 'LOAD_APP';
-export const LOAD_MAP = 'LOAD_MAP';
-export const RESIZE_MAP = 'RESIZE_MAP';
 export const RESIZE_WINDOW = 'RESIZE_WINDOW';
-
-// Logging - track map view info, but isolated to prevent infinite recursion
-export const RESIZE_OMNICARD = 'RESIZE_OMNICARD';
 
 export const SET_DOWNHILL_MAX = 'SET_DOWNHILL_MAX';
 export const SET_DOWNHILL_MIN = 'SET_DOWNHILL_MIN';
 export const SET_UPHILL_MAX = 'SET_UPHILL_MAX';
 export const SET_UPHILL_MIN = 'SET_UPHILL_MIN';
 export const TOGGLE_UPHILL = 'TOGGLE_UPHILL';
+
+export const RATE_SIDEWALK = 'RATE_SIDEWALK';
+export const UNDO_RATE_SIDEWALK = 'UNDO_RATE_SIDEWALK';
 
 // New action creators
 export const setDownhillMax = incline => ({
@@ -51,6 +49,16 @@ export const toggleUphill = () => ({
   type: TOGGLE_UPHILL,
 });
 
+export const rateSidewalk = (rating, feature) => ({
+  type: RATE_SIDEWALK,
+  payload: { rating, feature },
+});
+
+export const undoRateSidewalk = () => ({
+  type: UNDO_RATE_SIDEWALK,
+});
+
+
 // Action creators
 export const setPOI = (lng, lat, name) => ({
   type: SET_POI,
@@ -58,24 +66,6 @@ export const setPOI = (lng, lat, name) => ({
 });
 
 export const loadApp = () => ({ type: LOAD_APP });
-
-export const loadMap = (width, height) => ({
-  type: LOAD_MAP,
-  payload: {
-    width,
-    height,
-  },
-});
-
-export const resizeMap = (width, height) => ({
-  type: RESIZE_MAP,
-  payload: { width, height },
-});
-
-export const resizeOmniCard = (height, width) => ({
-  type: RESIZE_OMNICARD,
-  payload: { height, width },
-});
 
 export const setCenter = center => ({ type: SET_CENTER, payload: center });
 
@@ -105,13 +95,11 @@ export const resizeWindow = () => ({
   type: RESIZE_WINDOW,
 });
 
-
 // TODO: include centerpoint? Gotta know where to show popups!
 export const mapClick = (features, location) => ({
   type: MAP_CLICK,
   payload: { features, location },
 });
-
 
 export const clearSelectedFeatures = () => ({
   type: CLEAR_SELECTED_FEATURES,
