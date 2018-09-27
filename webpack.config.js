@@ -77,7 +77,7 @@ module.exports = function (env) {
     output: {
       path: staticsPath,
       filename: '[name].bundle.js',
-      publicPath: '/accessmap-usability-prototype/',
+      publicPath: '/',
     },
     module: {
       rules: [

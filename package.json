@@ -57,7 +57,7 @@
     "lodash.throttle": "^4.1.1",
     "mapbox": "^1.0.0-beta7",
     "mapbox-gl": "0.42.2",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.9.3",
     "normalize.css": "^8.0.0",
     "pre-commit": "^1.2.2",
     "prop-types": "^15.6.0",
