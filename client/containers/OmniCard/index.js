@@ -119,7 +119,7 @@ const OmniCard = (props) => {
         <CardActions>
           <Button
             raised
-            secondary
+            style={{ backgroundColor: 'red', color: 'white' }}
             onClick={() => actions.rateSidewalk('IMPOSSIBLE', selectedFeature)}
           >
             Impossible
@@ -127,27 +127,19 @@ const OmniCard = (props) => {
           <Button
             raised
             primary
-            onClick={() => actions.rateSidewalk('POSSIBLE', selectedFeature)}
-          >
-            Possible
-          </Button>
-        </CardActions>
-        <CardActions>
-          <Button
-            flat
-            secondary
             onClick={() => actions.rateSidewalk('DIFFICULT', selectedFeature)}
           >
             Difficult
           </Button>
           <Button
-            flat
-            primary
+            raised
+            secondary
             onClick={() => actions.rateSidewalk('NOT DIFFICULT', selectedFeature)}
           >
             Not difficult
           </Button>
         </CardActions>
+
         <CardActions>
           <Button
             flat
