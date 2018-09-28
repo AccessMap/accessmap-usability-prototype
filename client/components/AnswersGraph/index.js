@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 
 import SVGIcon from 'react-md/src/js/SVGIcons';
 
+import { DecisionTree } from 'machine_learning';
+// import DecisionTree from 'decision-tree';
+// import { LogisticRegression } from 'js-regression';
+// import { LogisticRegressionClassifier } from 'apparatus';
+
 const AnswersGraph = (props) => {
   const {
     impossibles,
@@ -37,11 +42,69 @@ const AnswersGraph = (props) => {
     />
   );
 
+  const thresholds = [null, null];
+
+  if (impossibles.length && difficults.length) {
+    const X1 = impossibles.map(d => [d]);
+    const X2 = difficults.map(d => [d]);
+    const X = X1.concat(X2);
+    const y1 = impossibles.map(() => 1);
+    const y2 = difficults.map(() => 0);
+    const y = y1.concat(y2);
+
+    const dt1 = new DecisionTree({
+      data: X,
+      result: y,
+    });
+
+    dt1.build();
+
+    thresholds[1] = Number(dt1.tree.value);
+  }
+
+  if (difficults.length && notdifficults.length) {
+    const X1 = difficults.map(d => [d]);
+    const X2 = notdifficults.map(d => [d]);
+    const X = X1.concat(X2);
+    const y1 = difficults.map(() => 1);
+    const y2 = notdifficults.map(() => 0);
+    const y = y1.concat(y2);
+
+    const dt0 = new DecisionTree({
+      data: X,
+      result: y,
+    });
+
+    dt0.build();
+
+    thresholds[0] = Number(dt0.tree.value);
+  }
+
   return (
     <SVGIcon
       viewBox={`0 0 ${w} ${h}`}
       className='answers-graph'
     >
+      { thresholds[0] !== null ?
+        <line
+          x1={xTransform(thresholds[0])}
+          y1={answerHeights[1]}
+          x2={xTransform(thresholds[0])}
+          y2={answerHeights[2]}
+          style={{ stroke: 'rgb(0,0,255)', strokeWidth: 2, opacity: 0.5 }}
+        />
+        : null
+      }
+      { thresholds[1] !== null ?
+        <line
+          x1={xTransform(thresholds[1])}
+          y1={answerHeights[0]}
+          x2={xTransform(thresholds[1])}
+          y2={answerHeights[1]}
+          style={{ stroke: 'rgb(255,0,0)', strokeWidth: 2, opacity: 0.5 }}
+        />
+        : null
+      }
       {
         [impossibles, difficults, notdifficults].map((data, i) => (
           <g key={data + answerHeights[i]}>
