@@ -16,32 +16,6 @@ const AnswersGraph = (props) => {
     fontSize,
   } = props;
 
-  const w = 200;
-  const h = 100;
-  const margin = 10;
-
-  const answerHeights = [10, 40, 70];
-
-  // Create transform from x-axis inclines to SVG plottable region (w - 2*margin)
-  const inclineMin = 0;
-  const inclineMax = 0.15;
-  const inclineRange = inclineMax - inclineMin;
-
-  const svgMin = margin;
-  const svgMax = w - (2 * margin);
-  const svgRange = svgMax - svgMin;
-
-  const xTransform = incline => (((incline - inclineMin) / inclineRange) * svgRange) + svgMin;
-
-  const circleFactory = (incline, key, height) => (
-    <circle
-      key={key}
-      cx={xTransform(incline)}
-      cy={height}
-      r='2'
-    />
-  );
-
   const thresholds = [null, null];
 
   if (impossibles.length && difficults.length) {
@@ -80,11 +54,51 @@ const AnswersGraph = (props) => {
     thresholds[0] = Number(dt0.tree.value);
   }
 
+  const w = 200;
+  const h = 120;
+  const margin = 10;
+
+  const answerHeights = [10, 40, 70];
+
+  // Create transform from x-axis inclines to SVG plottable region (w - 2*margin)
+  const inclineMin = 0;
+  const inclineMax = 0.15;
+  const inclineRange = inclineMax - inclineMin;
+
+  const svgMin = margin * 2;
+  const svgMax = w - (2 * margin);
+  const svgRange = svgMax - svgMin;
+
+  const xTransform = incline => (((incline - inclineMin) / inclineRange) * svgRange) + svgMin;
+
+  const circleFactory = (incline, key, height) => (
+    <circle
+      key={key}
+      cx={xTransform(incline)}
+      cy={height}
+      r='2'
+    />
+  );
+
+  const ticks = [0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15];
+
   return (
     <SVGIcon
       viewBox={`0 0 ${w} ${h}`}
       className='answers-graph'
     >
+      {
+        ticks.map(d => (
+          <line
+            key={`xtick-${d}`}
+            x1={xTransform(d)}
+            y1={answerHeights[0]}
+            x2={xTransform(d)}
+            y2={answerHeights[2]}
+            style={{ stroke: 'rgb(200,200,200)', strokeWidth: 1, opacity: 0.5 }}
+          />
+        ))
+      }
       { thresholds[0] !== null ?
         <line
           x1={xTransform(thresholds[0])}
@@ -110,6 +124,19 @@ const AnswersGraph = (props) => {
           <g key={data + answerHeights[i]}>
             { data.map((inc, j) => circleFactory(inc, inc + j, answerHeights[i])) }
           </g>
+        ))
+      }
+      {
+        ticks.map(d => (
+          <text
+            key={`xlabel-${d}`}
+            x={xTransform(d)}
+            y={h - margin - 20}
+            fontSize={fontSize}
+            textAnchor='middle'
+          >
+            {100 * d}
+          </text>
         ))
       }
       <text
