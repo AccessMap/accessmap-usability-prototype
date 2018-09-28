@@ -18,40 +18,32 @@ const AnswersGraph = (props) => {
 
   const thresholds = [null, null];
 
-  if (impossibles.length && difficults.length) {
-    const X1 = impossibles.map(d => [d]);
-    const X2 = difficults.map(d => [d]);
+  const estimateThreshold = (data0, data1) => {
+    // Note: the data is set to negative values so that the decision tree always finds
+    // the more conservative eleation.
+    const X1 = data0.map(d => [-d]);
+    const X2 = data1.map(d => [-d]);
     const X = X1.concat(X2);
-    const y1 = impossibles.map(() => 1);
-    const y2 = difficults.map(() => 0);
+    const y1 = data0.map(() => 1);
+    const y2 = data1.map(() => 0);
     const y = y1.concat(y2);
 
-    const dt1 = new DecisionTree({
+    const dt = new DecisionTree({
       data: X,
       result: y,
     });
 
-    dt1.build();
+    dt.build();
 
-    thresholds[1] = Number(dt1.tree.value);
+    return -1 * Number(dt.tree.value);
+  };
+
+  if (impossibles.length && difficults.length) {
+    thresholds[1] = estimateThreshold(impossibles, difficults);
   }
 
   if (difficults.length && notdifficults.length) {
-    const X1 = difficults.map(d => [d]);
-    const X2 = notdifficults.map(d => [d]);
-    const X = X1.concat(X2);
-    const y1 = difficults.map(() => 1);
-    const y2 = notdifficults.map(() => 0);
-    const y = y1.concat(y2);
-
-    const dt0 = new DecisionTree({
-      data: X,
-      result: y,
-    });
-
-    dt0.build();
-
-    thresholds[0] = Number(dt0.tree.value);
+    thresholds[0] = estimateThreshold(difficults, notdifficults);
   }
 
   const w = 200;
